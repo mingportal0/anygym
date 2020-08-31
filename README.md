@@ -1,5 +1,6 @@
 # anygym
 the Gym Management App.
+자세한 사항은 Issue나 Projects 참고.
 
 # Documents
 - 프로젝트 산출물 경로
