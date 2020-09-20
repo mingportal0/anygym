@@ -7,4 +7,5 @@ the Gym Management App.
 https://drive.google.com/drive/folders/1iUnH6YYouH7ldJ2uL6tqjs8UOHOfNlwz?usp=sharing
 
 # DB정보
-카카오톡 단톡 게시판 
+카카오톡 단톡 게시판 참고
+
