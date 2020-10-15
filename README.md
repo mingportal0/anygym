@@ -12,3 +12,25 @@ https://drive.google.com/drive/folders/1iUnH6YYouH7ldJ2uL6tqjs8UOHOfNlwz?usp=sha
 https://docs.mongodb.com/drivers/node/
 
 
+
+# Project Intall
+
++ git clone
+
+  ```
+  git clone https://github.com/mingportal0/anygym.git
+  ```
+
++ expo
+
+  ```
+  npm install expo-cli --global
+  
+  //within 'expo start' error
+  npm add expo
+  
+  expo start
+  ```
+
+  
+
