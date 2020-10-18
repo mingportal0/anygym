@@ -6,7 +6,7 @@ export default function App() {
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category='h1'>HOME</Text>
+        <Text category='h1'>HOMEabc</Text>
       </Layout>
     </ApplicationProvider>
   );
