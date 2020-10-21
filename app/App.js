@@ -1,13 +1,19 @@
 import React from 'react';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
-import * as eva from '@eva-design/eva';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import TrainerInfo from './components/pt/TrainerInfo';
+import Home from './components/Home';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category='h1'>HOMEabc</Text>
-      </Layout>
-    </ApplicationProvider>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home}/>
+        <Stack.Screen name="TrainerInfo" component={TrainerInfo}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
