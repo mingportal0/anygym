@@ -1,6 +1,6 @@
 import React from 'react';
-import { ApplicationProvider, Layout, Text, Card, Button } from '@ui-kitten/components';
-import * as eva from '@eva-design/eva';
+import { Layout, Text, Card, Button } from '@ui-kitten/components';
+import { View, Image } from 'react-native';
 
 export default function TrainerInfo() {
     const cardHeader = (evaProps) => (
@@ -20,20 +20,20 @@ export default function TrainerInfo() {
 
     const trainerInfo = () => {
         return (
-            <ApplicationProvider {...eva} theme={eva.light}>
-                <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Card header={cardHeader} footer={cardFooter}>
-                        <div>
-                            <img src="profilePic.png" alt="프로필사진"/>
-                        </div>
-                        <div>
-                            이름: 근육맨<br/>
-                            수상경력: 미스터코리아<br/>
-                            수업소개: 근육단련<br/>
-                        </div>
-                    </Card>
-                </Layout>
-            </ApplicationProvider>
+            <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <Card header={cardHeader} footer={cardFooter}>
+                    <View>
+                        <Image style={{width: 30, height: 30}} />
+                    </View>
+                    <View>
+                        <Text>
+                            이름: 홍길동{"\n"}
+                            수상경력: 미스터코리아{"\n"}
+                            수업소개: 근육단련{"\n"}
+                        </Text>
+                    </View>
+                </Card>
+            </Layout>
         );
     };
       
