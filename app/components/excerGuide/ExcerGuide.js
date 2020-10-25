@@ -45,7 +45,7 @@ export const ExcerGuide = () => {
 
 const styles = StyleSheet.create({
   container: {
-    maxHeight: 320,
+    maxHeight: 600,
   },
   contentContainer: {
     paddingHorizontal: 8,

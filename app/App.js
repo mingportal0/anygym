@@ -12,20 +12,8 @@ import {
 } from "@react-navigation/drawer";
 import * as eva from "@eva-design/eva";
 import TrainerInfo from "./components/pt/TrainerInfo";
-// import Home from "./components/Home";
+import Home from "./components/Home";
 import ExcerGuideList from "./containers/ExcerGuideList";
-
-function Home({ navigation }) {
-  return (
-    <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text category="h1">테스트 홈</Text>
-      <Button
-        title="Open drawer"
-        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-      />
-    </Layout>
-  );
-}
 
 function CustomDrawerContent(props) {
   return (

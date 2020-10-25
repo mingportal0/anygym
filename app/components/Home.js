@@ -1,8 +1,8 @@
 import React from "react";
 import { Layout, Text, Button } from "@ui-kitten/components";
-import { withNavigation } from "react-navigation";
+import { DrawerActions } from "@react-navigation/native";
 
-function Home() {
+function Home({ navigation }) {
   return (
     <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text category="h1">테스트 홈</Text>

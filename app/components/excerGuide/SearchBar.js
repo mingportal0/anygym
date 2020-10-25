@@ -10,7 +10,7 @@ export const SearchBar = () => {
       <Input
         style={styles.input}
         value={value}
-        placeholder="Active"
+        placeholder="영상 키워드를 입력하세요"
         onChangeText={(nextValue) => setValue(nextValue)}
       />
     </Layout>
@@ -20,9 +20,10 @@ export const SearchBar = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    maxHeight: 100,
   },
   input: {
     flex: 1,
-    margin: 2,
+    margin: 10,
   },
 });
