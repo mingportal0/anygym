@@ -26,7 +26,7 @@ function CustomDrawerContent(props) {
 
 const Drawer = createDrawerNavigator();
 
-export default function MyDrawer() {
+export default function DrawerNavigator() {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
