@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useState, useCallback} from "react";
 import "react-native-gesture-handler";
 import { Layout, Text, Button } from "@ui-kitten/components";
-import { NavigationContainer, DrawerActions } from "@react-navigation/native";
+import { NavigationContainer, DrawerActions, useFocusEffect } from "@react-navigation/native";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -11,6 +11,9 @@ import {
 import TrainerInfo from "../pt/TrainerInfo";
 import Home from "../Home";
 import ExcerGuideList from "../../containers/ExcerGuideList";
+import Login from "../../containers/Login";
+import CreateUser from "../../containers/CreateUser";
+import { getToken, getLoginUser } from '../../assets/api/token';
 
 function CustomDrawerContent(props) {
   return (
@@ -27,10 +30,13 @@ function CustomDrawerContent(props) {
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator() {
+
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
+      <Drawer.Screen name={getToken? "Logout" : "Login"} component={Login} />
+      <Drawer.Screen name="CreateUser" component={CreateUser} />
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="ExcerGuideList" component={ExcerGuideList} />
       <Drawer.Screen name="TrainerInfo" component={TrainerInfo} />
