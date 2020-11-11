@@ -1,7 +1,7 @@
-import React, {useState, useCallback} from "react";
+import React from "react";
 import "react-native-gesture-handler";
 import { Layout, Text, Button } from "@ui-kitten/components";
-import { NavigationContainer, DrawerActions, useFocusEffect } from "@react-navigation/native";
+import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
