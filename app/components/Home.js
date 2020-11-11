@@ -1,9 +1,9 @@
 import React, {useState, useCallback} from "react";
+import { View } from "react-native";
 import { Layout, Text, Button, TopNavigation, TopNavigationAction } from "@ui-kitten/components";
-import { DrawerActions } from "@react-navigation/native";
+import { DrawerActions, useFocusEffect } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons';
-import { setToken, getLoginUser } from '../assets/api/token';
-import { useFocusEffect } from '@react-navigation/native';
+import { setToken, isLogin, setLoginUser, getLoginUser, } from '../assets/api/token';
 
 export default function Home(props){
   const [state, setState] = useState({
@@ -14,7 +14,7 @@ export default function Home(props){
     console.log("logout");
     setState({ hasLoadedUsers: false, user: {} })
     await setToken("");
-    props.navigation.navigate("Login");
+    await setLoginUser("");
   };
 
   const loadUsers = async () => {
@@ -26,9 +26,12 @@ export default function Home(props){
           user: res,
         })
       })
-      .catch(handleUserLoadingError);
+      .catch(
+        //handleUserLoadingError
+      );
   }
 
+  //유저 없을 시 로그인 화면으로 이동
   const handleUserLoadingError = (res) => {
     if (res.error === 401) {
       props.navigation.navigate("Login");
@@ -44,10 +47,12 @@ export default function Home(props){
     useCallback(() => {
       //When the screen is focused
       loadUsers();
+      isLogin().then(function(res){
+        console.log("isLogin==", res);
+      })
 
       return () => {
         //When the screen is unfocused
-        
       };
     }, [])
   );
@@ -70,11 +75,15 @@ export default function Home(props){
       />
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text category="h1">테스트 홈</Text>
-        <Text key={state.user.userid}>{state.user.userid}님 환영합니다.</Text>
-        {state.userLoadingErrorMessage ? (
-          <Text>{state.userLoadingErrorMessage}</Text>
-        ) : null}
-        <Button onPress={logout} >Log out</Button>
+        {state.user.userid === undefined ? null : (
+          <View>
+            <Text key={state.user.userid}>{state.user.username}님 환영합니다.</Text>
+            {state.userLoadingErrorMessage ? (
+              <Text>{state.userLoadingErrorMessage}</Text>
+            ) : null}
+            <Button onPress={logout} >Log out</Button>
+          </View>
+        )}
       </Layout>
     </>
   );

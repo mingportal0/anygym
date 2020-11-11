@@ -13,7 +13,6 @@ import Home from "../Home";
 import ExcerGuideList from "../../containers/ExcerGuideList";
 import Login from "../../containers/Login";
 import CreateUser from "../../containers/CreateUser";
-import { getToken, getLoginUser } from '../../assets/api/token';
 
 function CustomDrawerContent(props) {
   return (
@@ -33,9 +32,10 @@ export default function DrawerNavigator() {
 
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      drawerContent={(props) => <CustomDrawerContent {...props}  />}
+      initialRouteName="Home"
     >
-      <Drawer.Screen name={getToken? "Logout" : "Login"} component={Login} />
+      <Drawer.Screen name="Login" component={Login} />
       <Drawer.Screen name="CreateUser" component={CreateUser} />
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="ExcerGuideList" component={ExcerGuideList} />

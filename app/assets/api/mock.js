@@ -1,5 +1,3 @@
-import { getToken } from './token';
-
 
 const mockSuccess = (value) => {
     return new Promise((resolve) => {
@@ -14,7 +12,8 @@ const mockFailure = (value) => {
 };
 
 export const login = (userid, pw, shouldSucceed = true) => {
-    console.log(userid, pw);
+    //console.log(userid, pw);
+    //console.log(getUsers().users);
     let isAuth = false;
     let notUserid = false;
     let notPw = false;
@@ -61,22 +60,68 @@ export const createAccount = (userid, pw, shouldSucceed = true) => {
     return mockSuccess({ auth_token: 'successful_fake_token' });
 };
 
-const getAuthenticationToken = () => 'successful_fake_token';
+export const getAuthenticationToken = () => 'successful_fake_token';
 
+
+//유저 데이터 가져오기 (현재 테스트 데이터)
 export const getUsers = () => {
 
     return {
         users: [
             {
-            userid: 'test',
-            pw: 'test',
-            name: '테스트'
+                userid      : 'test1',
+                pw          : 'test1',
+                username    : '유저1',
+                birthday    : '1991-11-29',
+                sex         : '남',
+                tel         : '010-1234-1234',
+                photo       : '',
+                height      : 180,
+                weight      : 70,
+                istrainer   : false,
+                isable      : true,
+                authlevel   : 3,
+                creator     : 'test2',
+                modifier    : 'test2',
+                modifiydate : '2020-11-12',
+                isdelete    : false
             },
             {
-            userid: 'test2',
-            pw: 'test2',
-            name: '테스트2'
+                userid      : 'test2',
+                pw          : 'test2',
+                username    : '트레이너2',
+                birthday    : '1998-12-01',
+                sex         : '여',
+                tel         : '010-4321-4352',
+                photo       : '',
+                height      : 185,
+                weight      : 80,
+                istrainer   : true,
+                isable      : true,
+                authlevel   : 2,
+                creator     : 'test3',
+                modifier    : 'test3',
+                modifiydate : '2020-11-12',
+                isdelete    : false
             },
+            {
+                userid      : 'test3',
+                pw          : 'test3',
+                username    : '관리자3',
+                birthday    : '1988-01-01',
+                sex         : '남',
+                tel         : '010-1321-6354',
+                photo       : '',
+                height      : 178,
+                weight      : 63,
+                istrainer   : false,
+                isable      : true,
+                authlevel   : 1,
+                creator     : 'test3',
+                modifier    : 'test3',
+                modifiydate : '2020-11-12',
+                isdelete    : false
+            }
         ]
     };
 };

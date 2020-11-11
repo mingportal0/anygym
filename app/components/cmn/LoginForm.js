@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {View, StyleSheet} from "react-native";
-import { Layout, Text, Button, Input } from "@ui-kitten/components";
-export const  LoginForm = ({onLogin, onCreateUser}) => {
+import { Button, Input } from "@ui-kitten/components";
+
+export const  LoginForm = ({onLogin}) => {
     const [inputs, setInputs] = useState({
         userid: "",
         pw: ""
@@ -9,7 +10,7 @@ export const  LoginForm = ({onLogin, onCreateUser}) => {
     const {userid, pw} = inputs;
 
     const onChange = (id, value) => {
-        console.log(id, value);
+        //console.log(id, value);
         setInputs({
             ...inputs,
             [id]: value
@@ -26,7 +27,6 @@ export const  LoginForm = ({onLogin, onCreateUser}) => {
     }
     return (
         <View style={styles.container}>
-            <Text>Login</Text>
             <Input
                 value={userid}
                 label='아이디'
@@ -41,9 +41,6 @@ export const  LoginForm = ({onLogin, onCreateUser}) => {
             <Button                
                 onPress={loginAction}
             >로그인</Button>
-            <Button
-                onPress={onCreateUser}
-            >Create User으로 이동</Button>
         </View>
     )
 }
