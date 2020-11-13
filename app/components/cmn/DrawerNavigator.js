@@ -9,6 +9,7 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 import TrainerInfo from "../pt/TrainerInfo";
+import BoardList from "../board/BoardList";
 import Home from "../Home";
 import ExcerGuideList from "../../containers/ExcerGuideList";
 
@@ -34,6 +35,7 @@ export default function DrawerNavigator() {
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="ExcerGuideList" component={ExcerGuideList} />
       <Drawer.Screen name="TrainerInfo" component={TrainerInfo} />
+      <Drawer.Screen name="BoardList" component={BoardList} />
     </Drawer.Navigator>
   );
 }
