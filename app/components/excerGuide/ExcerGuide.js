@@ -1,35 +1,37 @@
 import React from "react";
-import { List, Text, Card, Button } from "@ui-kitten/components";
+import { List, Text, Card } from "@ui-kitten/components";
 import { View, Image, StyleSheet } from "react-native";
 
 const data = new Array(8).fill({
-  title: "등근육 운동 루틴",
+  title: "운동영상",
 });
-
+export const TdayExcer = () => {
+  return (
+    <Card>
+      <Text>오늘의 추천영상 들어갈 자리</Text>
+      <Image
+        style={styles.thumnail}
+        source={{
+          url: "https://ppss.kr/wp-content/uploads/2017/02/2-30.jpg",
+        }}
+      />
+    </Card>
+  );
+};
 export const ExcerGuide = () => {
-  const renderItemHeader = (headerProps, info) => (
-    <View {...headerProps}>
-      <Text category="h6">
-        {info.item.title} {info.index + 1}
-      </Text>
-    </View>
-  );
-
-  const renderItemFooter = (footerProps) => (
-    <Text {...footerProps}>By 근육맨</Text>
-  );
-
   const renderItem = (info) => (
-    <Card
-      style={styles.item}
-      status="basic"
-      header={(headerProps) => renderItemHeader(headerProps, info)}
-      footer={renderItemFooter}
-    >
-      <Text>
-        연예인처럼 멋진 등근육은 어디에서 오는 것일까요? 꾸준한 노력으로 만드는
-        뒷모습
+    <Card style={styles.item} status="basic">
+      <Image
+        style={styles.thumnail}
+        source={{
+          url:
+            "https://imgnews.pstatic.net/image/468/2020/09/10/0000696282_001_20200910082939703.jpg?type=w647",
+        }}
+      />
+      <Text style={{ marginTop: 5, marginLeft: 2 }}>
+        제목 : 운동영상 제목입니다
       </Text>
+      <Text style={{ marginLeft: 2 }}>내용입니다</Text>
     </Card>
   );
 
@@ -48,8 +50,17 @@ const styles = StyleSheet.create({
     maxHeight: 600,
   },
   contentContainer: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     paddingVertical: 4,
+  },
+  thumnail: {
+    flex: 1,
+    width: 300,
+    height: 150,
+  },
+  titleText: {
+    alignItems: "flex-end",
+    fontSize: 20,
   },
   item: {
     marginVertical: 4,
