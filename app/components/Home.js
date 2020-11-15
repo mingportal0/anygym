@@ -83,9 +83,6 @@ export default function Home(props){
         {state.isLogin? (
           <View>
             <Text key={state.user.userid}>{state.user.username}님 환영합니다.</Text>
-            {state.userLoadingErrorMessage ? (
-              <Text>{state.userLoadingErrorMessage}</Text>
-            ) : null}
             <Button onPress={logout} >Log out</Button>
           </View>
         ) : null}
