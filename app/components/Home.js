@@ -7,7 +7,7 @@ import { setToken, setLoginUser, getLoginUser, } from '../assets/api/token';
 
 export default function Home(props){
   const [state, setState] = useState({
-    user: {}, isLogin: false, userLoadingErrorMessage: "" 
+    user: {}, isLogin: false
   });
 
   const logout = async () => {
@@ -33,22 +33,10 @@ export default function Home(props){
           })
         }
       })
-      .catch(
+      .catch((e) =>{
         //handleUserLoadingError
-      );
-  }
-
-  //유저 없을 시 로그인 화면으로 이동
-  const handleUserLoadingError = (res) => {
-    if (res.error === 401) {
-      props.navigation.navigate("Login");
-    } else {
-      setState({
-        ...state,
-        isLogin: false,
-        userLoadingErrorMessage: res.message,
+        console.log(e);
       });
-    }
   }
 
   useFocusEffect(

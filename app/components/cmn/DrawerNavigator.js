@@ -12,7 +12,6 @@ import TrainerInfo from "../pt/TrainerInfo";
 import Home from "../Home";
 import ExcerGuideList from "../../containers/ExcerGuideList";
 import Login from "../../containers/Login";
-import CreateUser from "../../containers/CreateUser";
 
 function CustomDrawerContent(props) {
   return (
@@ -36,7 +35,6 @@ export default function DrawerNavigator() {
       initialRouteName="Home"
     >
       <Drawer.Screen name="Login" component={Login} />
-      <Drawer.Screen name="CreateUser" component={CreateUser} />
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="ExcerGuideList" component={ExcerGuideList} />
       <Drawer.Screen name="TrainerInfo" component={TrainerInfo} />
