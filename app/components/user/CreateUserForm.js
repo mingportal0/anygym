@@ -107,10 +107,7 @@ export const CreateUserForm = () => {
         <Layout style={styles.row}>
             <Image
                 style={styles.photo}
-                source={{
-                url:
-                    "https://imgnews.pstatic.net/image/468/2020/09/10/0000696282_001_20200910082939703.jpg?type=w647",
-                }}
+                source={require("../../assets/img/blankUser.png")}
             />
         </Layout>
         <Layout style={styles.row}>
