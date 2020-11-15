@@ -3,28 +3,35 @@ import { View } from "react-native";
 import { Layout, Text, Button, TopNavigation, TopNavigationAction } from "@ui-kitten/components";
 import { DrawerActions, useFocusEffect } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons';
-import { setToken, isLogin, setLoginUser, getLoginUser, } from '../assets/api/token';
+import { setToken, setLoginUser, getLoginUser, } from '../assets/api/token';
 
 export default function Home(props){
   const [state, setState] = useState({
-    user: {}, hasLoadedUsers: false, userLoadingErrorMessage: "" 
+    user: {}, isLogin: false, userLoadingErrorMessage: "" 
   });
 
   const logout = async () => {
     console.log("logout");
-    setState({ hasLoadedUsers: false, user: {} })
+    setState({ 
+      ...state,
+      isLogin: false, 
+      user: {} 
+    })
     await setToken("");
     await setLoginUser("");
+    props.navigation.navigate("Home");
   };
 
   const loadUsers = async () => {
     getLoginUser()
       .then((res) => {
-        console.log("loadUsers", res);
-        setState({
-          hasLoadedUsers: true,
-          user: res,
-        })
+        if(res){
+          setState({
+            ...state,
+            isLogin: true,
+            user: res,
+          })
+        }
       })
       .catch(
         //handleUserLoadingError
@@ -37,7 +44,8 @@ export default function Home(props){
       props.navigation.navigate("Login");
     } else {
       setState({
-        hasLoadedUsers: false,
+        ...state,
+        isLogin: false,
         userLoadingErrorMessage: res.message,
       });
     }
@@ -47,9 +55,6 @@ export default function Home(props){
     useCallback(() => {
       //When the screen is focused
       loadUsers();
-      isLogin().then(function(res){
-        console.log("isLogin==", res);
-      })
 
       return () => {
         //When the screen is unfocused
@@ -75,7 +80,7 @@ export default function Home(props){
       />
       <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text category="h1">테스트 홈</Text>
-        {state.user.userid === undefined ? null : (
+        {state.isLogin? (
           <View>
             <Text key={state.user.userid}>{state.user.username}님 환영합니다.</Text>
             {state.userLoadingErrorMessage ? (
@@ -83,7 +88,7 @@ export default function Home(props){
             ) : null}
             <Button onPress={logout} >Log out</Button>
           </View>
-        )}
+        ) : null}
       </Layout>
     </>
   );

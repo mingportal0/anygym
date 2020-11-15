@@ -4,6 +4,7 @@ import { login } from '../assets/api/mock';
 import { Text, TopNavigation, TopNavigationAction } from "@ui-kitten/components";
 import { setToken, setLoginUser } from '../assets/api/token';
 import { Entypo } from '@expo/vector-icons';
+import { OpenModal } from "../components/cmn/OpenModal";
 
 export default function Login(props) {
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,7 +17,9 @@ export default function Login(props) {
       await setLoginUser(res.loginUser);
       props.navigation.navigate('Home');
     })
-    .catch((err) => setErrorMessage(err.message));
+    .catch((err) => {
+      setErrorMessage(err.message);
+    });
   }
 
   const HomeBtnIcon = () => (
@@ -40,7 +43,7 @@ export default function Login(props) {
         accessoryLeft={renderHomeBtn}
       />
       <LoginForm onLogin={onLogin} />
-      {errorMessage ? <Text>{errorMessage}</Text> : null}
+      {errorMessage ? (<OpenModal onText={errorMessage} />) : null}
     </>
   );
 }

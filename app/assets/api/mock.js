@@ -1,13 +1,13 @@
 
 const mockSuccess = (value) => {
     return new Promise((resolve) => {
-        setTimeout(() => resolve(value), 2000);
+        setTimeout(() => resolve(value), 1000);
     });
 };
 
 const mockFailure = (value) => {
     return new Promise((resolve, reject) => {
-        setTimeout(() => reject(value), 2000);
+        setTimeout(() => reject(value), 1000);
     });
 };
 
