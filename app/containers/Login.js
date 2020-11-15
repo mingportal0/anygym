@@ -10,7 +10,7 @@ export default function Login(props) {
   const [errorMessage, setErrorMessage] = useState("");
   const onLogin = async (userid, pw) => {
     //console.log("login param", userid, pw);
-    setErrorMessage('');
+    setErrorMessage("");
     login(userid, pw)
     .then(async (res) => {
       await setToken(res.auth_token);

@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 import {View, StyleSheet} from "react-native";
 import { Button, Input } from "@ui-kitten/components";
 import { OpenModal } from "../cmn/OpenModal";
+import { useFocusEffect } from "@react-navigation/native";
 
 export const  LoginForm = ({onLogin}) => {
     const [errorMessage, setErrorMessage] = useState("");
@@ -24,15 +25,26 @@ export const  LoginForm = ({onLogin}) => {
         if(userid.length > 0 && pw.length > 0){
             setErrorMessage("");
             onLogin(userid, pw);
-            setInputs({
-                ...inputs,
-                userid: "",
-                pw: ""
-            });
         }else{
             setErrorMessage("아이디나 비밀번호를 입력해주세요.");
         }
     }
+
+    useFocusEffect(
+        useCallback(() => {
+          //When the screen is focused
+          setInputs({
+            ...inputs,
+            userid: "",
+            pw: ""
+        });
+    
+          return () => {
+            //When the screen is unfocused
+          };
+        }, [])
+      );
+
     return (
         <View style={styles.container}>
             <Input
