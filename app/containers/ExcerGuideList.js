@@ -1,6 +1,11 @@
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
-import { TopNavigation, TopNavigationAction } from "@ui-kitten/components";
+import {
+  TopNavigation,
+  TopNavigationAction,
+  Tab,
+  TabBar,
+} from "@ui-kitten/components";
 
 import { SearchBar } from "../components/excerGuide/SearchBar";
 import { ExcerGuide } from "../components/excerGuide/ExcerGuide";

@@ -1,10 +1,13 @@
 import React from "react";
-import { List, Text, Card } from "@ui-kitten/components";
-import { View, Image, StyleSheet } from "react-native";
+import { List, Text, Card, Layout, useTheme } from "@ui-kitten/components";
+import { View, Image, StyleSheet, Video } from "react-native";
+import "react-native-gesture-handler";
+import { WebView } from "react-native-webview";
 
 const data = new Array(8).fill({
   title: "운동영상",
 });
+
 export const TdayExcer = () => {
   return (
     <Card>
@@ -18,9 +21,15 @@ export const TdayExcer = () => {
     </Card>
   );
 };
+
 export const ExcerGuide = () => {
-  const renderItem = (info) => (
-    <Card style={styles.item} status="basic">
+  // const navigation = this.context;
+  const renderItem = ({ navigation }) => (
+    <Card
+      style={styles.item}
+      status="basic"
+      onPress={() => navigation.navigate("Home")}
+    >
       <Image
         style={styles.thumnail}
         source={{
@@ -36,18 +45,51 @@ export const ExcerGuide = () => {
   );
 
   return (
+    // <NavigationContext>
     <List
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
       data={data}
       renderItem={renderItem}
+      onPress={() => navigation.navigate("Home")}
     />
+    // </NavigationContext>
+  );
+};
+
+export const ExcerView = () => {
+  const theme = useTheme();
+
+  return (
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: theme["color-primary-default"] },
+      ]}
+    >
+      <Text category="h4" status="control">
+        영상제목
+      </Text>
+
+      <WebView
+        style={styles.WebViewContainer}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        // mixedContentMode="compatibility"
+        source={{
+          uri: `https://www.youtube.com/watch?v=JGL-eQAAxGs`,
+        }}
+        useWebKit={true}
+      />
+      <Text status="control">등록일:2020-11-15</Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     maxHeight: 600,
+    height: 300,
   },
   contentContainer: {
     paddingHorizontal: 10,
@@ -64,5 +106,8 @@ const styles = StyleSheet.create({
   },
   item: {
     marginVertical: 4,
+  },
+  WebViewContainer: {
+    marginTop: Platform.OS == "ios" ? 20 : 0,
   },
 });
