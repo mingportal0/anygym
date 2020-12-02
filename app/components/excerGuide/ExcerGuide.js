@@ -78,7 +78,7 @@ export const ExcerView = () => {
 
   return (
     <View>
-      <Text category="h4" status="control" style={[styles.titleText]}>
+      <Text style={[styles.titleText]}>
         영상제목{" "}
         <FontAwesome5
           name="star"
@@ -124,11 +124,11 @@ const styles = StyleSheet.create({
     height: 150,
   },
   titleText: {
-    backgroundColor: "transparent",
     fontSize: 35,
     color: "#000000",
-
-    alignItems: "flex-end",
+    marginBottom: 20,
+    textAlign: "left",
+    backgroundColor: "white",
   },
   textarea: {
     fontSize: 20,
