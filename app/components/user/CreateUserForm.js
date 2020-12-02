@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { List, Text, Card, Layout, Input, Button } from "@ui-kitten/components";
 import { View, Image, StyleSheet, ScrollView } from "react-native";
 
-export const CreateUserForm = () => {
+export const CreateUserForm = (createUser) => {
+    const [user, setUser] = useState({
+        userid : '',
+        pw: '',
+    });
+    const onSubmit = e => {
+        e.preventDefault();
+        console.log("onSubmit", user);
+        //createUser(user);
+        //setUser({});
+    };  
 
-  return (
+    return (
     <ScrollView style={styles.container}>
         <Text style={styles.label}>아이디</Text>
         <Layout style={styles.row}>
             <Layout style={styles.column, {flex: 1.5}}>
                 <Input
                     style={styles.input}
-                    value=""
+                    value={user.userid || ''}
+                    onChangeText={(text) => setUser({ ...user, userid : text })}
                 />
             </Layout>
             <Layout style={styles.column}>
@@ -24,7 +35,8 @@ export const CreateUserForm = () => {
         <Layout style={styles.row}>
             <Input
                 style={styles.input}
-                value=""
+                value={user.pw || ''}
+                onChangeText={(text) => setUser({ ...user, pw : text })}
                 secureTextEntry
             />
         </Layout>
@@ -135,7 +147,7 @@ export const CreateUserForm = () => {
                 </Button>
             </Layout>
             <Layout style={styles.column}>
-                <Button style={styles.button}>
+                <Button style={styles.button} onPress={onSubmit}>
                     등록
                 </Button>
             </Layout>
@@ -143,7 +155,7 @@ export const CreateUserForm = () => {
         <Layout style={{marginBottom:50}}>
         </Layout>
     </ScrollView>
-  );
+    );
 };
 
 const styles = StyleSheet.create({
