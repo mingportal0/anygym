@@ -1,8 +1,10 @@
-import React from "react";
-import { List, Text, Card, Layout, useTheme } from "@ui-kitten/components";
-import { View, Image, StyleSheet, Video } from "react-native";
+import React, { useState, useCallback } from "react";
+import { List, Text, Card, useTheme } from "@ui-kitten/components";
+import { View, Image, StyleSheet, Toggle, Alert } from "react-native";
+import YoutubePlayer from "react-native-youtube-iframe";
 import "react-native-gesture-handler";
-import { WebView } from "react-native-webview";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Textarea } from "native-base";
 
 const data = new Array(8).fill({
   title: "운동영상",
@@ -60,32 +62,53 @@ export const ExcerGuide = () => {
 export const ExcerView = () => {
   const theme = useTheme();
 
-  return (
-    <View
-      style={[
-        styles.container,
-        { backgroundColor: theme["color-primary-default"] },
-      ]}
-    >
-      <Text category="h4" status="control">
-        영상제목
-      </Text>
+  const [playing, setPlaying] = useState(false);
+  // const[checked, setChecked] = useState(false);
 
-      <WebView
-        style={styles.WebViewContainer}
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        // mixedContentMode="compatibility"
-        source={{
-          uri: `https://www.youtube.com/watch?v=JGL-eQAAxGs`,
-        }}
-        useWebKit={true}
+  const onStageChange = useCallback((state) => {
+    if (state == "ended") {
+      setPlaying(false);
+      Alert.alert("video has finished playing");
+    }
+  }, []);
+
+  const onCheckedChange = (isChecked) => {
+    setChecked(isChecked);
+  };
+
+  return (
+    <View>
+      <Text category="h4" status="control" style={[styles.titleText]}>
+        영상제목{" "}
+        <FontAwesome5
+          name="star"
+          size={24}
+          color="black"
+          style={styles.FontAwesome5}
+        />
+      </Text>
+      <YoutubePlayer
+        height={230}
+        play={playing}
+        videoId={"4sswp02n0Yg"}
+        onChangeState={onStageChange}
       />
-      <Text status="control">등록일:2020-11-15</Text>
+      <Textarea>운동영상 내용입니다</Textarea>
+      <Text
+        category="label"
+        style={[
+          styles.textarea,
+          { backgroundColor: theme["color-primary-default"] },
+        ]}
+      >
+        영상태그 : #해시 #태그 #내용 #넣을_자리
+      </Text>
+      {/* <Toggle checked={checked} onChange={onCheckedChange}>
+        {`Checked : ${checked}`}
+      </Toggle> */}
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     maxHeight: 600,
@@ -101,13 +124,19 @@ const styles = StyleSheet.create({
     height: 150,
   },
   titleText: {
+    backgroundColor: "transparent",
+    fontSize: 35,
+    color: "#000000",
+
     alignItems: "flex-end",
+  },
+  textarea: {
     fontSize: 20,
   },
   item: {
     marginVertical: 4,
   },
-  WebViewContainer: {
-    marginTop: Platform.OS == "ios" ? 20 : 0,
+  FontAwesome5: {
+    alignContent: "flex-end",
   },
 });
