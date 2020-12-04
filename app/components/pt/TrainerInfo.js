@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Text, Card, Button } from '@ui-kitten/components';
 import { StyleSheet, View, Image, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../store/actions/index'
+import { fetchTrainerInfo } from '../../store/actions/index'
 
 export default function TrainerInfo (props) {
     const dispatch = useDispatch();
-    const trainers = useSelector((state) => state.pt.trainers);
+
+    useEffect(() => {
+        dispatch(fetchTrainerInfo());
+    }, []);
+    
+    const trainers = useSelector((state) => state.pt.trainer_info);
 
     const styles = StyleSheet.create({
         container: {
