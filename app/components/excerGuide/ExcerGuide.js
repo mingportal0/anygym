@@ -25,7 +25,6 @@ export const TdayExcer = () => {
 };
 
 export const ExcerGuide = () => {
-  // const navigation = this.context;
   const renderItem = ({ navigation }) => (
     <Card
       style={styles.item}
@@ -47,7 +46,6 @@ export const ExcerGuide = () => {
   );
 
   return (
-    // <NavigationContext>
     <List
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
@@ -55,7 +53,6 @@ export const ExcerGuide = () => {
       renderItem={renderItem}
       onPress={() => navigation.navigate("Home")}
     />
-    // </NavigationContext>
   );
 };
 
@@ -63,7 +60,6 @@ export const ExcerView = () => {
   const theme = useTheme();
 
   const [playing, setPlaying] = useState(false);
-  // const[checked, setChecked] = useState(false);
 
   const onStageChange = useCallback((state) => {
     if (state == "ended") {
@@ -103,9 +99,6 @@ export const ExcerView = () => {
       >
         영상태그 : #해시 #태그 #내용 #넣을_자리
       </Text>
-      {/* <Toggle checked={checked} onChange={onCheckedChange}>
-        {`Checked : ${checked}`}
-      </Toggle> */}
     </View>
   );
 };
