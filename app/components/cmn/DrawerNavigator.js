@@ -11,7 +11,7 @@ import {
 import TrainerInfo from "../pt/TrainerInfo";
 import Home from "../Home";
 import ExcerGuideList from "../../containers/ExcerGuideList";
-import CreateUser from "../../containers/user/CreateUser";
+import UserHome from "../../containers/user/index";
 import Login from "../../containers/Login";
 import LockerContainer from "../../containers/LockerContainer";
 
@@ -40,7 +40,7 @@ export default function DrawerNavigator() {
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="ExcerGuideList" component={ExcerGuideList} />
       <Drawer.Screen name="TrainerInfo" component={TrainerInfo} />
-      <Drawer.Screen name="CreateUser" component={CreateUser} />
+      <Drawer.Screen name="UserHome" component={UserHome} />
       <Drawer.Screen name="Locker" component={LockerContainer} />
     </Drawer.Navigator>
   );
