@@ -16,4 +16,4 @@ export const SimpleSelectBox = (placeholder, list, selectedValue, setSelectedVal
             {selectItem}
         </Picker>
     )
-}
+} 

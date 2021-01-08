@@ -2,14 +2,13 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Card, Modal, Text } from '@ui-kitten/components';
 
-export const OpenModal = ({onText, width, height}) => {
-
-  const [visible, setVisible] = React.useState(true);
-  const text = onText? onText : "기본 알림입니다.";
+export const OpenModal = ({text, onText, width, height}) => {
   const minWidth = width? width : 200;
   const minHeight = height? height : 100;
 
-
+  const onClose = () => {
+    onText("");
+  }
   const styles = StyleSheet.create({
     backdrop: {
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -25,14 +24,14 @@ export const OpenModal = ({onText, width, height}) => {
 
   return (
     <Modal
-        visible={visible}
+        visible={text.length>0}
         backdropStyle={styles.backdrop}
-        onBackdropPress={() => setVisible(false)}>
+        onBackdropPress={onClose}>
         <Card disabled={true} style={styles.card}>
             <Text style={styles.elem}>{text}</Text>
             <Button
                 style={styles.elem} 
-                onPress={() => setVisible(false)}>
+                onPress={onClose}>
             닫기
             </Button>
         </Card>

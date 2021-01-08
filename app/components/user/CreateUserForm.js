@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Text, Layout, Input, Button } from "@ui-kitten/components";
 import { Image, StyleSheet, ScrollView } from "react-native";
-import { SimpleSelectBox } from "../cmn/util";
+import { SimpleSelectBox } from "../cmn/ViewUtil";
+import {getCurrentDate} from "../../components/cmn/DateUtil";
 
-
-export const CreateUserForm = ({createUser}) => {
+export const CreateUserForm = ({navigation, createUser}) => {
     const [user, setUser] = useState({
         userid : '',
         pw: '',
@@ -21,6 +21,7 @@ export const CreateUserForm = ({createUser}) => {
     const onSubmit = e => {
         e.preventDefault();
         console.log("onSubmit", user);
+        user.birthday = getCurrentDate();
         //저장
         createUser(user);
         //초기화
@@ -29,7 +30,10 @@ export const CreateUserForm = ({createUser}) => {
     };
 
     let calendar = {
-        year: ["2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010"],
+        year: [ "1991", "1992", "1993", "1994", "1995", 
+                "1996", "1997", "1998", "1999", "2000", 
+                "2001", "2002", "2003", "2004", "2005", 
+                "2006", "2007", "2008", "2009", "2010"],
         month: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
         day: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
               "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", 
@@ -106,7 +110,7 @@ export const CreateUserForm = ({createUser}) => {
         </Layout>
         <Text style={styles.label}>생년월일</Text>
         <Layout style={styles.row}>
-            <Layout style={styles.column}>
+            <Layout style={{flex: 1.5, flexDirection: 'column', padding: 5}}>
                 {SimpleSelectBox("년", calendar.year, user.birthday.getFullYear().toString(), calendar.setBirthYear )}
             </Layout>
             <Layout style={styles.column}>
@@ -162,7 +166,7 @@ export const CreateUserForm = ({createUser}) => {
         </Layout>
         <Layout style={styles.row}>
             <Layout style={styles.column}>
-                <Button style={styles.button}>
+                <Button style={styles.button} onPress={() => navigation.goBack()}>
                     뒤로
                 </Button>
             </Layout>

@@ -6,6 +6,7 @@ import MenuCreateUser from "./MenuCreateUser";
 import TermsOfService from "./TermsOfService";
 import CreateNewUser from "./CreateNewUser";
 
+
 const Stack = createStackNavigator();
 
 export default function UserHome ({navigation}){
@@ -23,7 +24,7 @@ export default function UserHome ({navigation}){
     <>
         <TopNavigation alignment="center" title="Anygym" accessoryLeft={GoHome} />
         <Stack.Navigator headerMode="none">
-            <Stack.Screen name="MenuCreateUser" component={MenuCreateUser} />
+            <Stack.Screen name="MenuCreateUser" component={MenuCreateUser}/>
             <Stack.Screen name="TermsOfService" component={TermsOfService} />
             <Stack.Screen name="CreateNewUser" component={CreateNewUser} />
         </Stack.Navigator>

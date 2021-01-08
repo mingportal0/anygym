@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Text, Card, Button } from '@ui-kitten/components';
 import { StyleSheet, View, Image, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../store/actions/index'
+import { fetchTrainerInfo } from '../../store/actions/index'
 
-export default function TrainerInfo (props) {
+export default function TrainerInfo ({ navigation }) {
     const dispatch = useDispatch();
-    const trainers = useSelector((state) => state.pt.trainers);
+
+    useEffect(() => {
+        dispatch(fetchTrainerInfo());
+    }, []);
+    
+    const trainers = useSelector((state) => state.pt.trainer_info);
 
     const styles = StyleSheet.create({
         container: {
@@ -26,6 +31,11 @@ export default function TrainerInfo (props) {
     });
     
     const html = trainers.map((trainer) => {
+        
+        const handleClick = () => {
+            navigation.navigate('OT', {trainerId: trainer.id})
+        };
+
         const cardHeader = (evaProps) => (
             <Layout {...evaProps} style={styles.cardHeader}>
             <Text category='h6'>{trainer.name}</Text>
@@ -35,7 +45,7 @@ export default function TrainerInfo (props) {
     
         const cardFooter = (evaProps) => (
             <Layout {...evaProps}>
-                <Button onGetOtSchedule={()=>dispatch(actions.getOtSchedule(trainer.name))}>
+                <Button onPress={handleClick}>
                     {evaProps => <Text {...evaProps} style={[evaProps.style]}>OT예약</Text>}
                 </Button>
             </Layout>

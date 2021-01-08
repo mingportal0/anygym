@@ -1,8 +1,8 @@
 import React, {useState, useCallback} from "react";
 import {View, StyleSheet} from "react-native";
 import { Button, Input } from "@ui-kitten/components";
-import { OpenModal } from "../cmn/OpenModal";
 import { useFocusEffect } from "@react-navigation/native";
+import { OpenModal } from "../cmn/OpenModal";
 
 export const  LoginForm = ({onLogin}) => {
     const [errorMessage, setErrorMessage] = useState("");
@@ -64,7 +64,7 @@ export const  LoginForm = ({onLogin}) => {
                 style={styles.elem}        
                 onPress={loginAction}>
                 로그인</Button>
-            {errorMessage ? (<OpenModal onText={errorMessage} />) : null}
+            <OpenModal text={errorMessage} onText={setErrorMessage} />
         </View>
     )
 }

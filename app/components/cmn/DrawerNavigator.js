@@ -1,14 +1,13 @@
 import React from "react";
 import "react-native-gesture-handler";
-import { Layout, Text, Button } from "@ui-kitten/components";
-import { NavigationContainer, DrawerActions } from "@react-navigation/native";
+import { DrawerActions } from "@react-navigation/native";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
-import TrainerInfo from "../pt/TrainerInfo";
+import * as StackNavigator from "./StackNavigator";
 import Home from "../Home";
 import ExcerGuideList from "../../containers/ExcerGuideList";
 import UserHome from "../../containers/user/index";
@@ -39,7 +38,7 @@ export default function DrawerNavigator() {
       <Drawer.Screen name="Login" component={Login} />
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="ExcerGuideList" component={ExcerGuideList} />
-      <Drawer.Screen name="TrainerInfo" component={TrainerInfo} />
+      <Drawer.Screen name="TrainerInfo" component={StackNavigator.PtStack} />
       <Drawer.Screen name="UserHome" component={UserHome} />
       <Drawer.Screen name="Locker" component={LockerContainer} />
     </Drawer.Navigator>
