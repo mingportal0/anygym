@@ -5,7 +5,7 @@ import { SimpleSelectBox } from "../cmn/ViewUtil";
 import {getCurrentDate} from "../../components/cmn/DateUtil";
 
 export const CreateUserForm = ({navigation, createUser}) => {
-    const [user, setUser] = useState({
+    const initUser = {
         userid : '',
         pw: '',
         pwcheck: '',
@@ -15,17 +15,17 @@ export const CreateUserForm = ({navigation, createUser}) => {
         tel: '',
         height: '',
         weight: '',
-    });
+    };
+    const [user, setUser] = useState(initUser);
 
 
     const onSubmit = e => {
         e.preventDefault();
         console.log("onSubmit", user);
-        user.birthday = getCurrentDate();
         //저장
         createUser(user);
         //초기화
-        setUser({});
+        setUser(initUser);
         //이동
     };
 

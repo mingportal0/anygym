@@ -23,3 +23,29 @@ app.get('/trainer_info', (request, response) => {
     })
   })
 })
+
+app.get('/createUser', (request, response) => {
+  console.log(request.params, response);
+
+  const client = new MongoClient(uri, { useUnifiedTopology: true });
+
+  async function run() {
+    try {
+      await client.connect();
+
+      //create Document
+      const booksCollection = client.db("development").collection("aguser");
+      const booksDocument = {
+          name: "Java Programming",
+          price: 30000,
+          loc: [ "Seoul City Hall", "Gangnam" ],
+        };
+      const result = await booksCollection.insertOne(booksDocument);
+      console.log(result);
+    } finally {
+      // Ensures that the client will close when you finish/error
+      await client.close();
+    }
+  }
+  run().catch(console.dir);
+})
